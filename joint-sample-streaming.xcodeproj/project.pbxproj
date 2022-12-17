@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DEA2C5EF294E4FCA00771C2F /* StreamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5EE294E4FCA00771C2F /* StreamingView.swift */; };
+		DEA2C5F1294E4FE400771C2F /* WatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F0294E4FE400771C2F /* WatchingView.swift */; };
+		DEA2C5F4294E584200771C2F /* CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F3294E584200771C2F /* CGImage.swift */; };
+		DEA2C5F7294E595500771C2F /* StreamingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */; };
 		DED21FA02948C72500C2A168 /* JointSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21F9F2948C72500C2A168 /* JointSampleApp.swift */; };
 		DED21FA42948C72700C2A168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DED21FA32948C72700C2A168 /* Assets.xcassets */; };
 		DED21FA82948C72700C2A168 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DED21FA72948C72700C2A168 /* Preview Assets.xcassets */; };
@@ -40,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DEA2C5EE294E4FCA00771C2F /* StreamingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingView.swift; sourceTree = "<group>"; };
+		DEA2C5F0294E4FE400771C2F /* WatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingView.swift; sourceTree = "<group>"; };
+		DEA2C5F3294E584200771C2F /* CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImage.swift; sourceTree = "<group>"; };
+		DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingViewModel.swift; sourceTree = "<group>"; };
 		DED21F9C2948C72500C2A168 /* joint-sample-streaming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "joint-sample-streaming.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DED21F9F2948C72500C2A168 /* JointSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointSampleApp.swift; sourceTree = "<group>"; };
 		DED21FA32948C72700C2A168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +89,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DEA2C5F2294E583000771C2F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DEA2C5F3294E584200771C2F /* CGImage.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DEA2C5F5294E593100771C2F /* Streaming */ = {
+			isa = PBXGroup;
+			children = (
+				DEA2C5EE294E4FCA00771C2F /* StreamingView.swift */,
+				DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */,
+			);
+			path = Streaming;
+			sourceTree = "<group>";
+		};
 		DED21F932948C72500C2A168 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +199,7 @@
 		DED21FD12948D2CB00C2A168 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DEA2C5F2294E583000771C2F /* Extensions */,
 				DED21FCD2948D27A00C2A168 /* Camera */,
 				DED21FCF2948D29A00C2A168 /* Session */,
 			);
@@ -183,7 +209,9 @@
 		DED21FDE2948DACE00C2A168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DEA2C5F5294E593100771C2F /* Streaming */,
 				DED21FCA2948CEF500C2A168 /* ChooseModeView.swift */,
+				DEA2C5F0294E4FE400771C2F /* WatchingView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -325,9 +353,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DED21FD92948D6B200C2A168 /* Session.swift in Sources */,
+				DEA2C5F7294E595500771C2F /* StreamingViewModel.swift in Sources */,
 				DED21FD32948D3CF00C2A168 /* CameraErrors.swift in Sources */,
+				DEA2C5EF294E4FCA00771C2F /* StreamingView.swift in Sources */,
 				DED21FA02948C72500C2A168 /* JointSampleApp.swift in Sources */,
+				DEA2C5F4294E584200771C2F /* CGImage.swift in Sources */,
 				DED21FCB2948CEF500C2A168 /* ChooseModeView.swift in Sources */,
+				DEA2C5F1294E4FE400771C2F /* WatchingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

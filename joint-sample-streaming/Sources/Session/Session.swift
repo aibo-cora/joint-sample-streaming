@@ -11,6 +11,7 @@ import Combine
 
 class Session: ObservableObject {
     @Published var status: Status = .unknown
+    
     enum Status {
         case unknown, restricted(String), configuring, failed(String), ready
     }
@@ -19,12 +20,16 @@ class Session: ObservableObject {
     
     init() {
         configuration.$status
-            .delay(for: 2.0, scheduler: DispatchQueue.main)
+            .delay(for: 0.5, scheduler: DispatchQueue.main)
             .assign(to: &$status)
     }
     
-    private func update(status: Status) {
-        self.status = status
+    func start() {
+        configuration.start()
+    }
+    
+    func stop() {
+        configuration.stop()
     }
 }
 
@@ -44,7 +49,7 @@ extension Session {
                 .sink { status in
                     switch status {
                     case .unknown:
-                        break
+                        self.update(status: .unknown)
                     case .restricted:
                         self.update(status: .restricted("Session configuration status=\(status), cannot continue without camera and microphone permissions."))
                     case .allowed:
@@ -103,6 +108,22 @@ extension Session {
             session.commitConfiguration()
             
             self.update(status: .ready)
+        }
+        
+        func start() {
+            print("Starting capture session...")
+            sessionQueue.async {
+                self.session.startRunning()
+            }
+        }
+        
+        func stop() {
+            print("Stopping capture session...")
+            sessionQueue.async {
+                if self.session.isRunning {
+                    self.session.stopRunning()
+                }
+            }
         }
     }
 }

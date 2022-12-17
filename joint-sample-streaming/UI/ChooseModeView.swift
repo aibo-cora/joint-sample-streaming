@@ -11,10 +11,39 @@ import Combine
 struct ChooseModeView: View {
     @StateObject private var session = Session()
     
+    @State private var streaming = false
+    @State private var watching = false
+    
     @ViewBuilder var body: some View {
-        switch session.configuration.status {
+        switch session.status {
         case .ready:
-            Text("Ready")
+            VStack {
+                VStack {
+                    Text("Show yourself to the world")
+                    Button {
+                        self.streaming.toggle()
+                    } label: {
+                        Text("Stream")
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .padding()
+                
+                Divider()
+                    .padding(50)
+                
+                VStack {
+                    Text("Watch someone do magic")
+                    Button {
+                        self.watching.toggle()
+                    } label: {
+                        Text("Watch")
+                    }
+                    .buttonStyle(.bordered)
+                }
+            }
+            .sheet(isPresented: $streaming) { StreamingView(session: session) }
+            .sheet(isPresented: $watching) { WatchingView() }
         case .unknown:
             ProgressView()
         case .restricted:
@@ -31,8 +60,8 @@ struct ChooseModeView: View {
             ProgressView {
                 Text("Configuring")
             }
-        case .failed:
-            Text("Configuration Failed")
+        case .failed(let message):
+            Text(message)
         }
     }
 }
