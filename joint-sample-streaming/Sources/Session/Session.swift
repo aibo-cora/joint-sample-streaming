@@ -8,9 +8,14 @@
 import Foundation
 import AVFoundation
 import Combine
+import Joint
+import UIKit
 
 class Session: ObservableObject {
     @Published var status: Status = .unknown
+    
+    @Published var cameraFeed: CGImage?
+    @Published var transportStatus = TransportStatus.disconnected
     
     enum Status {
         case unknown, restricted(String), configuring, failed(String), ready
@@ -18,18 +23,71 @@ class Session: ObservableObject {
     
     let configuration = Configuration()
     
+    private var jointSession: JointSession?
+    private var subscriptions = [AnyCancellable]()
+    
     init() {
         configuration.$status
             .delay(for: 0.5, scheduler: DispatchQueue.main)
             .assign(to: &$status)
     }
     
+    let id = UIDevice.current.identifierForVendor?.uuidString ?? "NoID"
+    
+    func configure() {
+        jointSession?.$sampleBuffer
+            .compactMap( { $0 } )
+            .compactMap( { $0.imageBuffer })
+            .map( { CGImage.create(from: $0) })
+            .assign(to: &$cameraFeed)
+        
+        jointSession?.$transportStatus
+            .sink(receiveValue: { status in
+                if status == .connected {
+                    self.jointSession?.updateLinks(subscribeTo: [self.id], unsubscribeFrom: [])
+                }
+                self.transportStatus = status
+            })
+            .store(in: &subscriptions)
+        
+        jointSession?.$transportError
+            .sink(receiveValue: { error in
+                print("Transport error=\(error)")
+            })
+            .store(in: &subscriptions)
+    }
+    
+    func connect() {
+        let server = Broker(secure: true,
+                                ip: "ec4735464b1046269ee2cea58d53b355.s1.eu.hivemq.cloud",
+                              port: 8883,
+                          username: "aibo-cora",
+                          password: "sq!2L!EcFz9b!JA")
+        
+        jointSession = JointSession(
+            datasource: id,
+                 using: .MQTT(server),
+                 video: configuration.video,
+                 audio: configuration.audio)
+        configure()
+        
+        jointSession?.connect()
+    }
+    
     func start() {
         configuration.start()
+        do {
+            try jointSession?.start()
+        } catch let error as TransportError {
+            print(error)
+        } catch {
+            print(error)
+        }
     }
     
     func stop() {
         configuration.stop()
+        jointSession?.stop()
     }
 }
 
@@ -42,6 +100,9 @@ extension Session {
         private let permissions: Permission
         
         private var subscriptions = [AnyCancellable]()
+        
+        let video = AVCaptureVideoDataOutput()
+        let audio = PassthroughSubject<AVAudioPCMBuffer, Never>()
         
         init() {
             self.permissions = Permission()
@@ -90,12 +151,20 @@ extension Session {
                     
                     return
                 }
-                let videoInput = try AVCaptureDeviceInput(device: videoDevice)
+                let input = try AVCaptureDeviceInput(device: videoDevice)
                 
-                if session.canAddInput(videoInput) {
-                    session.addInput(videoInput)
+                if session.canAddInput(input) {
+                    session.addInput(input)
                 } else {
                     self.update(status: .failed("Couldn't add video device input to the session."))
+                    session.commitConfiguration()
+                    
+                    return
+                }
+                if session.canAddOutput(video) {
+                    session.addOutput(video)
+                } else {
+                    self.update(status: .failed("Couldn't add video device output to the session."))
                     session.commitConfiguration()
                     
                     return
