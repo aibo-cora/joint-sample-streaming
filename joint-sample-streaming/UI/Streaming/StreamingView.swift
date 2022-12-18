@@ -9,26 +9,23 @@ import SwiftUI
 import Combine
 
 struct StreamingView: View {
-    @StateObject private var model = StreamingViewModel()
     @ObservedObject var session: Session
     
     @State private var subscription: AnyCancellable?
     
     var body: some View {
-        CameraVideoFeed(frame: model.cameraFeed)
+        CameraVideoFeed(frame: session.cameraFeed)
             .onAppear {
-                model.connect()
-                
-                subscription = model.$transportStatus
+                subscription = session.$transportStatus
                     .sink { status in
-                        print("Transport status=\(status)")
+                        print("view Transport status=\(status)")
                         if status == .connected {
                             session.start()
-                            try? model.start()
                         }
                     }
+                session.connect()
             }
-            .onDisappear { model.stop() }
+            .onDisappear { session.stop() }
             .ignoresSafeArea()
     }
 }
