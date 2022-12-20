@@ -39,6 +39,7 @@ class Session: ObservableObject {
             .compactMap( { $0 } )
             .compactMap( { $0.imageBuffer })
             .map( { CGImage.create(from: $0) })
+            .receive(on: DispatchQueue.main)
             .assign(to: &$cameraFeed)
         
         jointSession?.$transportStatus
@@ -76,13 +77,7 @@ class Session: ObservableObject {
     
     func start() {
         configuration.start()
-        do {
-            try jointSession?.start()
-        } catch let error as TransportError {
-            print(error)
-        } catch {
-            print(error)
-        }
+        jointSession?.start()
     }
     
     func stop() {

@@ -18,7 +18,6 @@ struct StreamingView: View {
             .onAppear {
                 subscription = session.$transportStatus
                     .sink { status in
-                        print("view Transport status=\(status)")
                         if status == .connected {
                             session.start()
                         }
