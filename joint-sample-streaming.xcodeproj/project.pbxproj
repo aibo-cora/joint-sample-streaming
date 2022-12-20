@@ -12,6 +12,7 @@
 		DEA2C5F4294E584200771C2F /* CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F3294E584200771C2F /* CGImage.swift */; };
 		DEA2C5F7294E595500771C2F /* StreamingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */; };
 		DEA2C5F9294F9A3F00771C2F /* Broker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F8294F9A3F00771C2F /* Broker.swift */; };
+		DEC4B0772952513900289F49 /* Joint in Frameworks */ = {isa = PBXBuildFile; productRef = DEC4B0762952513900289F49 /* Joint */; };
 		DED21FA02948C72500C2A168 /* JointSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21F9F2948C72500C2A168 /* JointSampleApp.swift */; };
 		DED21FA42948C72700C2A168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DED21FA32948C72700C2A168 /* Assets.xcassets */; };
 		DED21FA82948C72700C2A168 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DED21FA72948C72700C2A168 /* Preview Assets.xcassets */; };
@@ -24,7 +25,6 @@
 		DED21FD42948D3CF00C2A168 /* CameraErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD22948D3CF00C2A168 /* CameraErrors.swift */; };
 		DED21FD92948D6B200C2A168 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD82948D6B200C2A168 /* Session.swift */; };
 		DED21FDA2948D6B200C2A168 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD82948D6B200C2A168 /* Session.swift */; };
-		DED21FDD2948D92B00C2A168 /* Joint in Frameworks */ = {isa = PBXBuildFile; productRef = DED21FDC2948D92B00C2A168 /* Joint */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DED21FDD2948D92B00C2A168 /* Joint in Frameworks */,
+				DEC4B0772952513900289F49 /* Joint in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +236,7 @@
 			);
 			name = "joint-sample-streaming";
 			packageProductDependencies = (
-				DED21FDC2948D92B00C2A168 /* Joint */,
+				DEC4B0762952513900289F49 /* Joint */,
 			);
 			productName = JointSample;
 			productReference = DED21F9C2948C72500C2A168 /* joint-sample-streaming.app */;
@@ -311,7 +311,7 @@
 			);
 			mainGroup = DED21F932948C72500C2A168;
 			packageReferences = (
-				DED21FDB2948D92B00C2A168 /* XCRemoteSwiftPackageReference "joint-v2" */,
+				DEC4B0752952513900289F49 /* XCRemoteSwiftPackageReference "joint-v2" */,
 			);
 			productRefGroup = DED21F9D2948C72500C2A168 /* Products */;
 			projectDirPath = "";
@@ -726,20 +726,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DED21FDB2948D92B00C2A168 /* XCRemoteSwiftPackageReference "joint-v2" */ = {
+		DEC4B0752952513900289F49 /* XCRemoteSwiftPackageReference "joint-v2" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:aibo-cora/joint-v2.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 0.2.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DED21FDC2948D92B00C2A168 /* Joint */ = {
+		DEC4B0762952513900289F49 /* Joint */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DED21FDB2948D92B00C2A168 /* XCRemoteSwiftPackageReference "joint-v2" */;
+			package = DEC4B0752952513900289F49 /* XCRemoteSwiftPackageReference "joint-v2" */;
 			productName = Joint;
 		};
 /* End XCSwiftPackageProductDependency section */
