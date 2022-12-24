@@ -13,6 +13,7 @@
 		DEA2C5F7294E595500771C2F /* StreamingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */; };
 		DEA2C5F9294F9A3F00771C2F /* Broker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F8294F9A3F00771C2F /* Broker.swift */; };
 		DEC4B0772952513900289F49 /* Joint in Frameworks */ = {isa = PBXBuildFile; productRef = DEC4B0762952513900289F49 /* Joint */; };
+		DEC4B0792952552C00289F49 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEC4B0782952552C00289F49 /* README.md */; };
 		DED21FA02948C72500C2A168 /* JointSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21F9F2948C72500C2A168 /* JointSampleApp.swift */; };
 		DED21FA42948C72700C2A168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DED21FA32948C72700C2A168 /* Assets.xcassets */; };
 		DED21FA82948C72700C2A168 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DED21FA72948C72700C2A168 /* Preview Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		DEA2C5F3294E584200771C2F /* CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImage.swift; sourceTree = "<group>"; };
 		DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingViewModel.swift; sourceTree = "<group>"; };
 		DEA2C5F8294F9A3F00771C2F /* Broker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Broker.swift; sourceTree = "<group>"; };
+		DEC4B0782952552C00289F49 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DED21F9C2948C72500C2A168 /* joint-sample-streaming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "joint-sample-streaming.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DED21F9F2948C72500C2A168 /* JointSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointSampleApp.swift; sourceTree = "<group>"; };
 		DED21FA32948C72700C2A168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		DED21F932948C72500C2A168 = {
 			isa = PBXGroup;
 			children = (
+				DEC4B0782952552C00289F49 /* README.md */,
 				DED21F9E2948C72500C2A168 /* joint-sample-streaming */,
 				DED21FB02948C72700C2A168 /* JointSampleTests */,
 				DED21FBA2948C72700C2A168 /* JointSampleUITests */,
@@ -329,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEC4B0792952552C00289F49 /* README.md in Resources */,
 				DED21FA82948C72700C2A168 /* Preview Assets.xcassets in Resources */,
 				DED21FA42948C72700C2A168 /* Assets.xcassets in Resources */,
 			);
@@ -731,7 +735,7 @@
 			repositoryURL = "git@github.com:aibo-cora/joint-v2.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
+				minimumVersion = 0.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
