@@ -77,12 +77,18 @@ class Session: ObservableObject {
     
     func start() {
         configuration.start()
-        jointSession?.start()
+        
+        jointSession?.startCapture()
     }
     
     func stop() {
         configuration.stop()
-        jointSession?.stop()
+        
+        jointSession?.stopCapture()
+    }
+    
+    func disconnect() {
+        jointSession?.disconnect()
     }
 }
 
