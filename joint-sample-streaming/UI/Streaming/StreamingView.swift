@@ -11,16 +11,28 @@ import Combine
 struct StreamingView: View {
     @ObservedObject var session: Session
     
-    @State private var subscription: AnyCancellable?
+    @State private var streaming = false
     
     var body: some View {
-        CameraVideoFeed(frame: session.cameraFeed)
-            .onAppear {
-                session.connect()
-                session.start()
-            }
-            .onDisappear { session.stop() }
+        ZStack(alignment: .bottom) {
+            CameraVideoFeed(frame: session.cameraFeed)
+                .onAppear {
+                    session.connect()
+                    session.start()
+                }
+                .onDisappear { session.stop() }
             .ignoresSafeArea()
+            
+            if session.transportStatus == .connected {
+                Button {
+                    streaming.toggle()
+                    session.transport(enabled: streaming)
+                } label: {
+                    StreamingControlView(streaming: $streaming)
+                }
+                .padding()
+            }
+        }
     }
 }
 
