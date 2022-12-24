@@ -87,6 +87,10 @@ class Session: ObservableObject {
         jointSession?.stopCapture()
     }
     
+    func transport(enabled: Bool) {
+        jointSession?.transport(enabled: enabled)
+    }
+    
     func disconnect() {
         jointSession?.disconnect()
     }
