@@ -16,13 +16,8 @@ struct StreamingView: View {
     var body: some View {
         CameraVideoFeed(frame: session.cameraFeed)
             .onAppear {
-                subscription = session.$transportStatus
-                    .sink { status in
-                        if status == .connected {
-                            session.start()
-                        }
-                    }
                 session.connect()
+                session.start()
             }
             .onDisappear { session.stop() }
             .ignoresSafeArea()
