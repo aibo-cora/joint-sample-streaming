@@ -26,6 +26,7 @@
 		DED21FD42948D3CF00C2A168 /* CameraErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD22948D3CF00C2A168 /* CameraErrors.swift */; };
 		DED21FD92948D6B200C2A168 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD82948D6B200C2A168 /* Session.swift */; };
 		DED21FDA2948D6B200C2A168 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD82948D6B200C2A168 /* Session.swift */; };
+		DEEB7D6929577B810003B378 /* StreamingControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEB7D6829577B810003B378 /* StreamingControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		DED21FCA2948CEF500C2A168 /* ChooseModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseModeView.swift; sourceTree = "<group>"; };
 		DED21FD22948D3CF00C2A168 /* CameraErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraErrors.swift; sourceTree = "<group>"; };
 		DED21FD82948D6B200C2A168 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		DEEB7D6829577B810003B378 /* StreamingControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		DEA2C5F5294E593100771C2F /* Streaming */ = {
 			isa = PBXGroup;
 			children = (
+				DEEB7D6829577B810003B378 /* StreamingControlView.swift */,
 				DEA2C5EE294E4FCA00771C2F /* StreamingView.swift */,
 				DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */,
 			);
@@ -362,6 +365,7 @@
 				DED21FD92948D6B200C2A168 /* Session.swift in Sources */,
 				DEA2C5F7294E595500771C2F /* StreamingViewModel.swift in Sources */,
 				DED21FD32948D3CF00C2A168 /* CameraErrors.swift in Sources */,
+				DEEB7D6929577B810003B378 /* StreamingControlView.swift in Sources */,
 				DEA2C5EF294E4FCA00771C2F /* StreamingView.swift in Sources */,
 				DED21FA02948C72500C2A168 /* JointSampleApp.swift in Sources */,
 				DEA2C5F4294E584200771C2F /* CGImage.swift in Sources */,
