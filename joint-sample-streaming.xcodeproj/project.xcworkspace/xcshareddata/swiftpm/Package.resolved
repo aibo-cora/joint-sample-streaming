@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:aibo-cora/joint-v2.git",
       "state" : {
-        "revision" : "4f784e53dd614c3f53a4122e1cd774880bbbdd74",
-        "version" : "0.2.1"
+        "revision" : "e47270c0952141abc3a3e4952a98f39564e2b5b0",
+        "version" : "0.3.0"
       }
     },
     {
