@@ -33,6 +33,7 @@ class Session: ObservableObject {
     }
     
     let id = UIDevice.current.identifierForVendor?.uuidString ?? "NoID"
+    let streamListChannel = "joint/sample/stream/list"
     
     func configure() {
         jointSession?.$sampleBuffer
@@ -41,19 +42,23 @@ class Session: ObservableObject {
             .map( { CGImage.create(from: $0) })
             .receive(on: DispatchQueue.main)
             .assign(to: &$cameraFeed)
-        
         jointSession?.$transportStatus
             .sink(receiveValue: { status in
                 if status == .connected {
-                    self.jointSession?.updateLinks(subscribeTo: [self.id], unsubscribeFrom: [])
+                    /// Subscribe to the general channel for live streams.
+                    self.jointSession?.updateLinks(subscribeTo: [self.streamListChannel], unsubscribeFrom: [])
                 }
                 self.transportStatus = status
             })
             .store(in: &subscriptions)
-        
         jointSession?.$transportError
             .sink(receiveValue: { error in
                 print("Transport error=\(error)")
+            })
+            .store(in: &subscriptions)
+        jointSession?.$outgoing
+            .sink(receiveValue: { message in
+                print("Message sent.")
             })
             .store(in: &subscriptions)
     }
@@ -87,6 +92,8 @@ class Session: ObservableObject {
         jointSession?.stopCapture()
     }
     
+    /// Subscribe to the channel representing the client.
+    /// - Parameter enabled: Toggle switch.
     func transport(enabled: Bool) {
         jointSession?.transport(enabled: enabled)
     }
