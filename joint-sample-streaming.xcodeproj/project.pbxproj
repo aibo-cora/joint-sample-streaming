@@ -27,6 +27,7 @@
 		DED21FD92948D6B200C2A168 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD82948D6B200C2A168 /* Session.swift */; };
 		DED21FDA2948D6B200C2A168 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED21FD82948D6B200C2A168 /* Session.swift */; };
 		DEEB7D6929577B810003B378 /* StreamingControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEB7D6829577B810003B378 /* StreamingControlView.swift */; };
+		DEEB7D6B2958C54B0003B378 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEB7D6A2958C54B0003B378 /* Configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		DED21FD22948D3CF00C2A168 /* CameraErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraErrors.swift; sourceTree = "<group>"; };
 		DED21FD82948D6B200C2A168 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		DEEB7D6829577B810003B378 /* StreamingControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingControlView.swift; sourceTree = "<group>"; };
+		DEEB7D6A2958C54B0003B378 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,9 +193,10 @@
 		DED21FCF2948D29A00C2A168 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				DED21FD02948D2A000C2A168 /* Errors */,
-				DED21FD82948D6B200C2A168 /* Session.swift */,
 				DEA2C5F8294F9A3F00771C2F /* Broker.swift */,
+				DEEB7D6A2958C54B0003B378 /* Configuration.swift */,
+				DED21FD82948D6B200C2A168 /* Session.swift */,
+				DED21FD02948D2A000C2A168 /* Errors */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				DED21FCB2948CEF500C2A168 /* ChooseModeView.swift in Sources */,
 				DEA2C5F9294F9A3F00771C2F /* Broker.swift in Sources */,
 				DEA2C5F1294E4FE400771C2F /* WatchingView.swift in Sources */,
+				DEEB7D6B2958C54B0003B378 /* Configuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,7 +743,7 @@
 			repositoryURL = "git@github.com:aibo-cora/joint-v2.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
+				minimumVersion = 0.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
