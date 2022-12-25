@@ -20,8 +20,6 @@ struct StreamingControlView: View {
             .shadow(radius: 3)
             .opacity(blinking ? 0 : 1)
             .onChange(of: streaming, perform: { _ in
-                print("streaming=\(streaming)")
-                
                 var transaction = Transaction()
                 transaction.disablesAnimations = streaming ? false : true
                 
