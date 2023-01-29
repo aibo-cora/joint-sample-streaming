@@ -36,18 +36,16 @@ class Session: ObservableObject {
     let streamListChannel = "joint/sample/stream/list"
     
     func configure() {
+        /// Capture session artifact
         jointSession?.$sampleBuffer
             .compactMap( { $0 } )
             .compactMap( { $0.imageBuffer })
             .map( { CGImage.create(from: $0) })
             .receive(on: DispatchQueue.main)
             .assign(to: &$cameraFeed)
+        /// Transport monitor
         jointSession?.$transportStatus
             .sink(receiveValue: { status in
-                if status == .connected {
-                    /// Subscribe to the general channel for live streams.
-                    self.jointSession?.updateLinks(subscribeTo: [self.streamListChannel], unsubscribeFrom: [])
-                }
                 self.transportStatus = status
             })
             .store(in: &subscriptions)
@@ -56,9 +54,15 @@ class Session: ObservableObject {
                 print("Transport error=\(error)")
             })
             .store(in: &subscriptions)
+        /// Traffic
         jointSession?.$outgoing
             .sink(receiveValue: { message in
-                print("Message sent.")
+                print("Message containing video data sent=\(message?.source ?? "")")
+            })
+            .store(in: &subscriptions)
+        jointSession?.$incoming
+            .sink(receiveValue: { message in
+                print("Message received from=\(String(describing: message?.source))")
             })
             .store(in: &subscriptions)
     }
@@ -80,6 +84,13 @@ class Session: ObservableObject {
         jointSession?.connect()
     }
     
+    func publish(message: Message) {
+        if self.transportStatus == .connected {
+            jointSession?.publish(message: message)
+            print("Message containing heartbeat data sent=\(String(describing: try? JSONDecoder().decode(Stream.self, from: message.data)))")
+        }
+    }
+    
     func start() {
         configuration.start()
         
@@ -95,8 +106,34 @@ class Session: ObservableObject {
     /// Subscribe to the channel representing the client.
     /// - Parameter enabled: Toggle switch.
     func transport(enabled: Bool) {
-        jointSession?.transport(enabled: enabled)
+        jointSession?.transport(enabled: enabled) // This can be set when the first watcher joins the stream.
+        
+        heartbeat()
+        
+        /// Send a heart beat message to the main channel containing a list of all streamers to announce the status of a stream.
+        func heartbeat() {
+            let stream = Stream(metadata: Stream.Metadata(status: enabled ? .active : .completed))
+            
+            do {
+                let data = try JSONEncoder().encode(stream)
+                
+                if enabled {
+                    self.timer = Timer.publish(every: 5.0, on: .main, in: .default)
+                        .autoconnect()
+                        .sink { timer in
+                            self.publish(message: Message(source: self.id, data: data))
+                        }
+                } else {
+                    self.timer?.cancel()
+                    self.publish(message: Message(source: self.id, data: data))
+                }
+            } catch {
+                print("Stream Error - \(Stream.Errors.encoding.rawValue)")
+            }
+        }
     }
+    
+    var timer: AnyCancellable?
     
     func disconnect() {
         jointSession?.disconnect()

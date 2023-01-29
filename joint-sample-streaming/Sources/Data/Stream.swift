@@ -1,0 +1,24 @@
+//
+//  Stream.swift
+//  joint-sample-streaming
+//
+//  Created by Yura on 1/29/23.
+//
+
+import Foundation
+
+struct Stream: Codable {
+    let metadata: Metadata
+    
+    struct Metadata: Codable {
+        let status: Status
+    }
+    
+    enum Status: Codable {
+        case active, completed, terminated
+    }
+    
+    enum Errors: String, Error {
+        case encoding
+    }
+}
