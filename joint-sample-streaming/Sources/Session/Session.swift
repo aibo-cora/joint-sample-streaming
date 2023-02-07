@@ -112,7 +112,7 @@ class Session: ObservableObject {
         
         /// Send a heart beat message to the main channel containing a list of all streamers to announce the status of a stream.
         func heartbeat() {
-            let stream = Stream(metadata: Stream.Metadata(status: enabled ? .active : .completed))
+            let stream = Stream(status: enabled ? .active : .completed)
             
             do {
                 let data = try JSONEncoder().encode(stream)
@@ -120,9 +120,8 @@ class Session: ObservableObject {
                 if enabled {
                     self.timer = Timer.publish(every: 5.0, on: .main, in: .default)
                         .autoconnect()
-                        .sink { timer in
-                            self.publish(message: Message(source: self.id, data: data))
-                        }
+                        .sink { _ in
+                            self.publish(message: Message(source: self.id, data: data)) }
                 } else {
                     self.timer?.cancel()
                     self.publish(message: Message(source: self.id, data: data))
