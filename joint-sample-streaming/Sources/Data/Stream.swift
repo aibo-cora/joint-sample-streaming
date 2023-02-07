@@ -8,11 +8,7 @@
 import Foundation
 
 struct Stream: Codable {
-    let metadata: Metadata
-    
-    struct Metadata: Codable {
-        let status: Status
-    }
+    let status: Status
     
     enum Status: Codable {
         case active, completed, terminated
