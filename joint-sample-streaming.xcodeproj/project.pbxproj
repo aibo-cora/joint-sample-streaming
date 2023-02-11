@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE16C6F429870D3A0081FA2D /* Joint in Frameworks */ = {isa = PBXBuildFile; productRef = DE16C6F329870D3A0081FA2D /* Joint */; };
 		DE16C6F729870FDC0081FA2D /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16C6F629870FDC0081FA2D /* Stream.swift */; };
+		DE4E0E41299823BE003A65AC /* Joint in Frameworks */ = {isa = PBXBuildFile; productRef = DE4E0E40299823BE003A65AC /* Joint */; };
 		DEA2C5EF294E4FCA00771C2F /* StreamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5EE294E4FCA00771C2F /* StreamingView.swift */; };
 		DEA2C5F1294E4FE400771C2F /* WatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F0294E4FE400771C2F /* WatchingView.swift */; };
 		DEA2C5F4294E584200771C2F /* CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F3294E584200771C2F /* CGImage.swift */; };
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE16C6F429870D3A0081FA2D /* Joint in Frameworks */,
+				DE4E0E41299823BE003A65AC /* Joint in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +105,14 @@
 				DE16C6F629870FDC0081FA2D /* Stream.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		DE4E0E3E29981763003A65AC /* Watching */ = {
+			isa = PBXGroup;
+			children = (
+				DEA2C5F0294E4FE400771C2F /* WatchingView.swift */,
+			);
+			path = Watching;
 			sourceTree = "<group>";
 		};
 		DEA2C5F2294E583000771C2F /* Extensions */ = {
@@ -232,9 +240,9 @@
 		DED21FDE2948DACE00C2A168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				DEA2C5F5294E593100771C2F /* Streaming */,
 				DED21FCA2948CEF500C2A168 /* ChooseModeView.swift */,
-				DEA2C5F0294E4FE400771C2F /* WatchingView.swift */,
+				DEA2C5F5294E593100771C2F /* Streaming */,
+				DE4E0E3E29981763003A65AC /* Watching */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -256,7 +264,7 @@
 			);
 			name = "joint-sample-streaming";
 			packageProductDependencies = (
-				DE16C6F329870D3A0081FA2D /* Joint */,
+				DE4E0E40299823BE003A65AC /* Joint */,
 			);
 			productName = JointSample;
 			productReference = DED21F9C2948C72500C2A168 /* joint-sample-streaming.app */;
@@ -331,7 +339,7 @@
 			);
 			mainGroup = DED21F932948C72500C2A168;
 			packageReferences = (
-				DE16C6F229870D3A0081FA2D /* XCRemoteSwiftPackageReference "joint-v2" */,
+				DE4E0E3F299823BE003A65AC /* XCRemoteSwiftPackageReference "joint-v2" */,
 			);
 			productRefGroup = DED21F9D2948C72500C2A168 /* Products */;
 			projectDirPath = "";
@@ -562,7 +570,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -603,7 +611,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -750,20 +758,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DE16C6F229870D3A0081FA2D /* XCRemoteSwiftPackageReference "joint-v2" */ = {
+		DE4E0E3F299823BE003A65AC /* XCRemoteSwiftPackageReference "joint-v2" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:aibo-cora/joint-v2.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.0;
+				minimumVersion = 0.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DE16C6F329870D3A0081FA2D /* Joint */ = {
+		DE4E0E40299823BE003A65AC /* Joint */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DE16C6F229870D3A0081FA2D /* XCRemoteSwiftPackageReference "joint-v2" */;
+			package = DE4E0E3F299823BE003A65AC /* XCRemoteSwiftPackageReference "joint-v2" */;
 			productName = Joint;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -56,13 +56,15 @@ class Session: ObservableObject {
             .store(in: &subscriptions)
         /// Traffic
         jointSession?.$outgoing
+            .compactMap { $0 }
             .sink(receiveValue: { message in
-                print("Message containing video data sent=\(message?.source ?? "")")
+                print("Message containing video data sent to=\(message.channel)")
             })
             .store(in: &subscriptions)
         jointSession?.$incoming
+            .compactMap { $0 }
             .sink(receiveValue: { message in
-                print("Message received from=\(String(describing: message?.source))")
+                self.process(message: message)
             })
             .store(in: &subscriptions)
     }
@@ -86,8 +88,22 @@ class Session: ObservableObject {
     
     func publish(message: Message) {
         if self.transportStatus == .connected {
+            print("Heartbeat message sent to=\(message.channel), data=\(message.payload)")
             jointSession?.publish(message: message)
-            print("Message containing heartbeat data sent=\(String(describing: try? JSONDecoder().decode(Stream.self, from: message.data)))")
+        }
+    }
+    
+    @Published var activeStreamers: [String: Int?] = [:]
+    
+    func process(message: Message) {
+        print("Message received from=\(message.channel), data=\(message.payload)")
+        
+        do {
+            let metadata = try JSONDecoder().decode(Stream.self, from: message.payload)
+            
+            self.activeStreamers[metadata.source] = metadata.status == .active ? 0 : nil
+        } catch {
+            /// If it is not `Stream` metadata of a heartbeat, it must be binary data of an active stream and needs to be displayed.
         }
     }
     
@@ -112,7 +128,7 @@ class Session: ObservableObject {
         
         /// Send a heart beat message to the main channel containing a list of all streamers to announce the status of a stream.
         func heartbeat() {
-            let stream = Stream(status: enabled ? .active : .completed)
+            let stream = Stream(status: enabled ? .active : .completed, source: self.id)
             
             do {
                 let data = try JSONEncoder().encode(stream)
@@ -121,10 +137,10 @@ class Session: ObservableObject {
                     self.timer = Timer.publish(every: 5.0, on: .main, in: .default)
                         .autoconnect()
                         .sink { _ in
-                            self.publish(message: Message(source: self.id, data: data)) }
+                            self.publish(message: Message(for: self.streamListChannel, carrying: data)) }
                 } else {
                     self.timer?.cancel()
-                    self.publish(message: Message(source: self.id, data: data))
+                    self.publish(message: Message(for: self.streamListChannel, carrying: data))
                 }
             } catch {
                 print("Stream Error - \(Stream.Errors.encoding.rawValue)")
@@ -136,5 +152,24 @@ class Session: ObservableObject {
     
     func disconnect() {
         jointSession?.disconnect()
+    }
+    
+    func open(channel: Session.Channels) {
+        let link: String
+        
+        switch channel {
+        case .lobby:
+            link = self.streamListChannel
+        case .custom(let channel):
+            link = channel
+        }
+        print("Subscribed to channel=\(link)")
+        jointSession?.updateLinks(subscribeTo: [link], unsubscribeFrom: [])
+    }
+}
+
+extension Session {
+    enum Channels {
+        case lobby, custom(String)
     }
 }
