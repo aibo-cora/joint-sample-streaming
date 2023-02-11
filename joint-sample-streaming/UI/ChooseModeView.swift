@@ -43,7 +43,8 @@ struct ChooseModeView: View {
                 }
             }
             .sheet(isPresented: $streaming) { StreamingView(session: session) }
-            .sheet(isPresented: $watching) { WatchingView() }
+            .sheet(isPresented: $watching) {
+                WatchingView(session: session) }
         case .unknown:
             ProgressView()
         case .restricted:

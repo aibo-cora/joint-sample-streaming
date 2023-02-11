@@ -9,6 +9,7 @@ import Foundation
 
 struct Stream: Codable {
     let status: Status
+    let source: String
     
     enum Status: Codable {
         case active, completed, terminated
