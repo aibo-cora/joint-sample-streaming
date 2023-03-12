@@ -16,10 +16,11 @@ struct WatchingView: View {
     var body: some View {
         if #available(iOS 16.0, *) {
             NavigationStack {
-                List {
-                    ForEach(Array(session.activeStreamers.keys), id: \.self) { streamer in
-                        NavigationLink(streamer, value: streamer)
-                    }
+                List(Array(session.activeStreamers.keys), id: \.self) { room in
+                    NavigationLink(room, value: room)
+                }
+                .navigationDestination(for: String.self) { room in
+                    WatchStream(session: self.session, room: room)
                 }
             }
             .onAppear() {
@@ -40,7 +41,6 @@ struct WatchingView: View {
                     } label: {
                         Text(streamer)
                     }
-
                 }
             }
             .onAppear() {
@@ -54,6 +54,22 @@ struct WatchingView: View {
                     })
             }
         }
+    }
+}
+
+struct WatchStream: View {
+    @ObservedObject var session: Session
+    
+    let room: String
+    
+    var body: some View {
+        Text(self.room)
+            .onAppear() {
+                self.session.open(channel: .custom(self.room))
+            }
+            .onDisappear() {
+                self.session.close(channel: .custom(self.room))
+            }
     }
 }
 
