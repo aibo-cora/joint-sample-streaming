@@ -58,7 +58,7 @@ class Session: ObservableObject {
         jointSession?.$outgoing
             .compactMap { $0 }
             .sink(receiveValue: { message in
-                print("Message containing video data sent to=\(message.channel)")
+                print("Message containing video data sent to=\(message.channel), payload=\(message.payload)")
             })
             .store(in: &subscriptions)
         jointSession?.$incoming
@@ -94,6 +94,7 @@ class Session: ObservableObject {
     }
     
     @Published var activeStreamers: [String: Int?] = [:]
+    @Published var incomingVideoMessage: Message?
     
     func process(message: Message) {
         print("Message received from=\(message.channel), data=\(message.payload)")
@@ -104,6 +105,7 @@ class Session: ObservableObject {
             self.activeStreamers[metadata.source] = metadata.status == .active ? 0 : nil
         } catch {
             /// If it is not `Stream` metadata of a heartbeat, it must be binary data of an active stream and needs to be displayed.
+            self.incomingVideoMessage = message
         }
     }
     
@@ -165,6 +167,19 @@ class Session: ObservableObject {
         }
         print("Subscribed to channel=\(link)")
         jointSession?.updateLinks(subscribeTo: [link], unsubscribeFrom: [])
+    }
+    
+    func close(channel: Session.Channels) {
+        let link: String
+        
+        switch channel {
+        case .lobby:
+            link = self.streamListChannel
+        case .custom(let channel):
+            link = channel
+        }
+        print("Unsubscribed from channel=\(link)")
+        jointSession?.updateLinks(subscribeTo: [], unsubscribeFrom: [link])
     }
 }
 
