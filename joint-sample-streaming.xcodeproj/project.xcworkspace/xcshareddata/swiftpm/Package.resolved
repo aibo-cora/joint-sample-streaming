@@ -5,14 +5,14 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:aibo-cora/joint-v2.git",
       "state" : {
-        "revision" : "7104948be90c085da84ff5f7a8a1514bbbd87b3e",
-        "version" : "0.6.0"
+        "revision" : "d4df7d9a30ac40ec4fa6f3ca6a33dae3c99b9224",
+        "version" : "0.7.0"
       }
     },
     {
       "identity" : "mqttclient-spm",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:aibo-cora/MQTTClient-SPM.git",
+      "location" : "https://github.com/aibo-cora/MQTTClient-SPM.git",
       "state" : {
         "revision" : "bf3ba38e2dd375bd13623fd824f8e2328683cc94",
         "version" : "0.15.3"
