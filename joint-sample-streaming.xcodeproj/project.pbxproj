@@ -10,7 +10,7 @@
 		DE16C6F729870FDC0081FA2D /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE16C6F629870FDC0081FA2D /* Stream.swift */; };
 		DE221CBA29C645AF00CF53A1 /* Joint in Frameworks */ = {isa = PBXBuildFile; productRef = DE221CB929C645AF00CF53A1 /* Joint */; };
 		DEA2C5EF294E4FCA00771C2F /* StreamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5EE294E4FCA00771C2F /* StreamingView.swift */; };
-		DEA2C5F1294E4FE400771C2F /* WatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F0294E4FE400771C2F /* WatchingView.swift */; };
+		DEA2C5F1294E4FE400771C2F /* StreamerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F0294E4FE400771C2F /* StreamerList.swift */; };
 		DEA2C5F4294E584200771C2F /* CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F3294E584200771C2F /* CGImage.swift */; };
 		DEA2C5F7294E595500771C2F /* StreamingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */; };
 		DEA2C5F9294F9A3F00771C2F /* Broker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2C5F8294F9A3F00771C2F /* Broker.swift */; };
@@ -51,7 +51,7 @@
 /* Begin PBXFileReference section */
 		DE16C6F629870FDC0081FA2D /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		DEA2C5EE294E4FCA00771C2F /* StreamingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingView.swift; sourceTree = "<group>"; };
-		DEA2C5F0294E4FE400771C2F /* WatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingView.swift; sourceTree = "<group>"; };
+		DEA2C5F0294E4FE400771C2F /* StreamerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamerList.swift; sourceTree = "<group>"; };
 		DEA2C5F3294E584200771C2F /* CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImage.swift; sourceTree = "<group>"; };
 		DEA2C5F6294E595500771C2F /* StreamingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingViewModel.swift; sourceTree = "<group>"; };
 		DEA2C5F8294F9A3F00771C2F /* Broker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Broker.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		DE4E0E3E29981763003A65AC /* Watching */ = {
 			isa = PBXGroup;
 			children = (
-				DEA2C5F0294E4FE400771C2F /* WatchingView.swift */,
+				DEA2C5F0294E4FE400771C2F /* StreamerList.swift */,
 			);
 			path = Watching;
 			sourceTree = "<group>";
@@ -394,7 +394,7 @@
 				DE16C6F729870FDC0081FA2D /* Stream.swift in Sources */,
 				DED21FCB2948CEF500C2A168 /* ChooseModeView.swift in Sources */,
 				DEA2C5F9294F9A3F00771C2F /* Broker.swift in Sources */,
-				DEA2C5F1294E4FE400771C2F /* WatchingView.swift in Sources */,
+				DEA2C5F1294E4FE400771C2F /* StreamerList.swift in Sources */,
 				DEEB7D6B2958C54B0003B378 /* Configuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
