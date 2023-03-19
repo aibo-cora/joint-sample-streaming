@@ -44,7 +44,7 @@ struct ChooseModeView: View {
             }
             .sheet(isPresented: $streaming) { StreamingView(session: session) }
             .sheet(isPresented: $watching) {
-                WatchingView(session: session) }
+                StreamerList(session: session) }
         case .unknown:
             ProgressView()
         case .restricted:

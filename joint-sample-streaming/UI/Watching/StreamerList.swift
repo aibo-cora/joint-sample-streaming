@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct WatchingView: View {
+struct StreamerList: View {
     @ObservedObject var session: Session
     
     @State var connection: AnyCancellable?
@@ -34,24 +34,26 @@ struct WatchingView: View {
                     })
             }
         } else {
-            List {
-                ForEach(Array(session.activeStreamers.keys), id: \.self) { streamer in
-                    NavigationLink {
-                        SwiftUI.EmptyView()
-                    } label: {
-                        Text(streamer)
+            NavigationView {
+                List {
+                    ForEach(Array(session.activeStreamers.keys), id: \.self) { streamer in
+                        NavigationLink {
+                            SwiftUI.EmptyView()
+                        } label: {
+                            Text(streamer)
+                        }
                     }
                 }
-            }
-            .onAppear() {
-                session.connect()
-                
-                self.connection = session.$transportStatus
-                    .sink(receiveValue: { status in
-                        if status == .connected {
-                            session.open(channel: .lobby)
-                        }
-                    })
+                .onAppear() {
+                    session.connect()
+                    
+                    self.connection = session.$transportStatus
+                        .sink(receiveValue: { status in
+                            if status == .connected {
+                                session.open(channel: .lobby)
+                            }
+                        })
+                }
             }
         }
     }
@@ -75,6 +77,6 @@ struct WatchStream: View {
 
 struct WatchingView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchingView(session: Session())
+        StreamerList(session: Session())
     }
 }
